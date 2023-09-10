@@ -1,10 +1,15 @@
 import React from 'react';
-import Test from './components/Test';
+import { Login } from './components/Login';
+import classNames from 'classnames';
+
+const styles = {
+  container: classNames('flex', 'flex-col', 'h-screen'),
+};
 
 const App: React.FC = () => {
   return (
-    <div>
-      <Test />
+    <div className={styles.container}>
+      <Login />
     </div>
   );
 };
