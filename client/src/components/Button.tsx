@@ -1,11 +1,8 @@
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, type ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-interface ButtonProps {
-  children: string;
-  onClick?: any;
-  disabled?: boolean;
-  className?: string;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
 }
 
 const styles = {
@@ -20,13 +17,12 @@ const styles = {
 
 export const Button = ({
   children,
-  onClick,
-  disabled,
   className,
+  ...buttonProps
 }: ButtonProps): ReactNode => {
   const buttonStyles = classNames([styles.container, className]);
   return (
-    <button onClick={onClick} disabled={disabled} className={buttonStyles}>
+    <button {...buttonProps} className={buttonStyles}>
       {children}
     </button>
   );
