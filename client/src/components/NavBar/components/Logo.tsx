@@ -7,8 +7,6 @@ const styles = {
   text: classNames('text-primary'),
 };
 
-// test
-
 export const Logo = (): React.ReactNode => {
   return (
     <Link className={styles.log} to="/">
