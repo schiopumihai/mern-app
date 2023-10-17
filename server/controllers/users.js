@@ -1,4 +1,4 @@
-const users = require('../models/users.json');
+const users = require('../models/users.json') || [];
 
 const initialData = [...users];
 
