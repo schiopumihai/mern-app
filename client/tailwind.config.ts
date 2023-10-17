@@ -5,8 +5,11 @@ export default {
     extend: {
       colors: {
         MGray: '#909090',
-        primary: '#00ACFF'
-      }
+        primary: '#00ACFF',
+      },
+      fontFamily: {
+        pacifico: ['"Pacifico"', 'cursive'],
+      },
     },
   },
   plugins: [],
