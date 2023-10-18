@@ -1,10 +1,5 @@
 [
   {
-    "id": 1,
-    "username": "newUser",
-    "password": "$2b$10$f7z9UWrAlq7.bn6sxEUyG.Q4g8VKrhWvn/3qUnEATWZ4f9yy8wx0O"
-  },
-  {
     "id": 2,
     "username": "newUser123",
     "password": "$2b$10$dPKH8B3f3Kk2fVnXkDK.x.WCZIeXjj7Gem.tIKo/ffgWCm1MRO1IG"
@@ -13,5 +8,11 @@
     "id": 3,
     "username": "newUser555555",
     "password": "$2b$10$cqB7IWpfkxOALNyuVCtnbunzOHFkQVcg6BaA2c2NL2RRtG30zN0D6"
+  },
+  {
+    "id": 1,
+    "username": "newUser",
+    "password": "$2b$10$f7z9UWrAlq7.bn6sxEUyG.Q4g8VKrhWvn/3qUnEATWZ4f9yy8wx0O",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5ld1VzZXIiLCJpYXQiOjE2OTc2NjMyNzIsImV4cCI6MTY5Nzc0OTY3Mn0.4vlmbjX4PyzXPWcxI_AwslY-i5giJuczuXRP0GsH8WE"
   }
 ]

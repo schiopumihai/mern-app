@@ -2,6 +2,10 @@ const bcrypt = require('bcrypt');
 const fsPromises = require('fs').promises;
 const path = require('path');
 const users = require('../models/users.json');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const EXPIRES_IN_24H = 1000 * 60 * 60 * 24;
 
 const registerUser = async (req, res) => {
   const { username, password } = req?.body;
@@ -45,14 +49,27 @@ const logInUser = async (req, res) => {
 
   const matchPasswords = await bcrypt.compare(password, findUser?.password);
 
-  console.log({ matchPasswords , username, password});
-
-  if (matchPasswords) {
-    return res.json({ success: `User ${username} is logged in!` });
-  } else {
+  if (!matchPasswords) {
     return res.sendStatus(401);
   }
 
+  const accessToken = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1m' });
+  const refreshToken = jwt.sign({ username }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' });
+  const filterUsers = users.filter(user => user.username !== username);
+
+  const data = JSON.stringify([...filterUsers, { ...findUser, refreshToken }]);
+
+  try {
+    await fsPromises.writeFile(
+      path.join(__dirname, '..', 'models', 'users.json'),
+      data
+    );
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+
+  res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: EXPIRES_IN_24H, sameSite: 'None' });
+  res.json({ accessToken });
 };
 
 module.exports = { registerUser, logInUser };
