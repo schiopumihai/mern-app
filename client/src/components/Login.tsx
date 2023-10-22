@@ -32,7 +32,7 @@ export const Login: React.FC = () => {
         <Controller
           control={control}
           name="password"
-          render={({ field }) => <Input label="Password" {...field} />}
+          render={({ field }) => <Input label="Password" type='password' {...field} />}
         />
       </Dialog.Content>
       <Dialog.Actions>

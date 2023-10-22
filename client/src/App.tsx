@@ -1,6 +1,7 @@
 import React from 'react';
 import { Login } from './components/Login';
 import classNames from 'classnames';
+import { NavBar } from './components/NavBar';
 
 const styles = {
   container: classNames('flex', 'flex-col', 'h-screen'),
@@ -8,9 +9,12 @@ const styles = {
 
 const App: React.FC = () => {
   return (
-    <div className={styles.container}>
-      <Login />
-    </div>
+    <>
+      <NavBar />
+      <div className={styles.container}>
+        <Login />
+      </div>
+    </>
   );
 };
 

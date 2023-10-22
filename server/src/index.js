@@ -1,27 +1,22 @@
 require('dotenv').config();
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
 const mongoose = require('mongoose');
 
-const corsOptions = require('./config/corsConfig');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/authRouter');
 const verifyJwt = require('./middleware/verifyJwt');
 const connectDb = require('./config/connectDb');
-const credentials = require('./middleware/credentials');
+const rootMiddleware = require('./middleware');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 connectDb();
 
-app.use(credentials);
-app.use(cors(corsOptions));
+// middlewares
+app.use(rootMiddleware);
 
-app.use(express.json());
-app.use(cookieParser());
-
+// routes
 app.use('/auth', authRouter);
 
 app.use(verifyJwt);
