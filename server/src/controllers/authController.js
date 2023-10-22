@@ -1,34 +1,29 @@
 const bcrypt = require('bcrypt');
-const mongoose = require('../')
-const fsPromises = require('fs').promises;
-const path = require('path');
-const users = require('../models/users.json');
 const jwt = require('jsonwebtoken');
+
+const Users = require('../models/users');
 
 const EXPIRES_IN_24H = 1000 * 60 * 60 * 24;
 
 const registerUser = async (req, res) => {
   const { username, password } = req?.body;
+
+  console.log({ username, password });
+
   if (!username || !password) {
     return res.status(400).json({ message: "Username and password are required" });
   }
 
-  const findUser = users?.find(user => user?.username === username);
+  const findUser = await Users.findOne({ username }).exec();
   if (findUser) {
     return res.status(409).json({ message: "User with this username already exists" });
   }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const data = JSON.stringify([...users, { username, password: hashedPassword }]);
-    console.log(data);
-
-    await fsPromises.writeFile(
-      path.join(__dirname, '..', 'models', 'users.json'),
-      data
+    await Users.create(
+      { username, password: hashedPassword }
     );
-
-    console.log(users);
 
     return res.status(201).json({ success: `New user ${username} was created!` });
   } catch (error) {
@@ -42,7 +37,7 @@ const logInUser = async (req, res) => {
     return res.status(400).json({ message: "Username and password are required" });
   }
 
-  const findUser = users.find(user => user.username === username);
+  const findUser = await Users.findOne({ username });
   if (!findUser) {
     return res.status(401).json({ message: "Unauthorized user" });
   }
@@ -55,20 +50,16 @@ const logInUser = async (req, res) => {
 
   const accessToken = jwt.sign({ username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
   const refreshToken = jwt.sign({ username }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
-  const filterUsers = users.filter(user => user.username !== username);
-
-  const data = JSON.stringify([...filterUsers, { ...findUser, refreshToken }]);
 
   try {
-    await fsPromises.writeFile(
-      path.join(__dirname, '..', 'models', 'users.json'),
-      data
-    );
+    findUser.refreshToken = refreshToken;
+    await findUser.save();
+
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 
-  res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: EXPIRES_IN_24H, sameSite: 'None' });
+  res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: EXPIRES_IN_24H, sameSite: 'None', secure: true });
   res.json({ accessToken });
 };
 

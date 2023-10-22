@@ -1,19 +1,22 @@
 import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import axios from 'axios';
 import { Dialog } from './Dialog';
 import { Input } from './Input';
 import { Button } from './Button';
-import { useForm, Controller } from 'react-hook-form';
 
 export const Login: React.FC = () => {
   const { handleSubmit, control } = useForm({
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
 
-  const onSubmit = (data: any): any => {
-    console.log({ data });
+  const onSubmit = async (data: any): Promise<any> => {
+    const token = await axios.post('http://localhost:5000/auth/logIn', data);
+
+    console.log({ token });
   };
 
   return (
@@ -22,7 +25,7 @@ export const Login: React.FC = () => {
       <Dialog.Content>
         <Controller
           control={control}
-          name="email"
+          name="username"
           render={({ field }) => <Input label="Email" {...field} />}
         />
 
