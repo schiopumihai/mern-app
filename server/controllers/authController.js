@@ -3,7 +3,6 @@ const fsPromises = require('fs').promises;
 const path = require('path');
 const users = require('../models/users.json');
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
 
 const EXPIRES_IN_24H = 1000 * 60 * 60 * 24;
 
