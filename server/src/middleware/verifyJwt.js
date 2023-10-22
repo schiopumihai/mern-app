@@ -17,7 +17,6 @@ const verifyJwt = (req, res, next) => {
         return res.sendStatus(403);
       }
 
-      req.user = decoded.username;
       next();
     });
 };
