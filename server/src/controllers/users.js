@@ -1,51 +1,49 @@
-const users = require('../models/users.json') || [];
+const Users = require('../models/users');
 
-const initialData = [...users];
+const getAllUsers = async (req, res) => {
+  const users = await Users.find();
 
-const getAllUsers = (req, res) => {
-  res.json(initialData);
+  if (!users) {
+    return res.status(204).json([]);
+  }
+
+  return res.json(users);
 };
 
-const createUser = (req, res) => {
-  initialData.push(req.body);
-  res.json({ ...req.body });
-};
+const updateUser = async (req, res) => {
+  try {
+    await Users.findByIdAndUpdate(req.params.id, req.body).exec();
 
-const updateUser = (req, res) => {
-  const idx = initialData.findIndex((user) => user.id === req.body?.id);
-
-  if (idx !== -1) {
-    initialData[idx] = req.body;
-    res.json(req.body);
-  } else {
-    res.send('Error');
+    return res.sendStatus(200);
+  } catch (error) {
+    return res.status(500).json(error);
   }
 };
 
-const deleteUser = (req, res) => {
-  const idx = initialData.findIndex((user) => user.id === req.body?.id);
-  console.log(req.body);
-  if (idx !== -1) {
-    delete initialData[idx];
-    res.send(`${req.body.id} was deleted`);
-  } else {
-    res.send('Error');
+const deleteUser = async (req, res) => {
+  try {
+    await Users.findByIdAndDelete(req.params.id).exec();
+    return res
+      .status(200)
+      .json({ message: `User ${req.params.id} was removed with success` });
+  } catch (error) {
+    return res.status(500).json(error);
   }
 };
 
-const getUserById = (req, res) => {
-  const user = initialData.find((user) => user.id === Number(req.params?.id));
-  if (user) {
-    res.json([user]);
-  } else {
-    res.send('Error');
+const getUserById = async (req, res) => {
+  try {
+    const user = await Users.findById(req.params.id).exec();
+
+    return res.json(user);
+  } catch (error) {
+    return res.status(404).json(error);
   }
 };
 
 module.exports = {
   getAllUsers,
   getUserById,
-  createUser,
   updateUser,
   deleteUser,
 };
