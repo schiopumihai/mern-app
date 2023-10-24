@@ -30,7 +30,7 @@ const styles = {
 
 const NAV_LINKS = [
   {
-    link: '',
+    link: '/',
     Icon: HomeIcon,
   },
   {
