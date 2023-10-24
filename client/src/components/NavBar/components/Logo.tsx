@@ -10,8 +10,8 @@ const styles = {
 export const Logo = (): React.ReactNode => {
   return (
     <Link className={styles.log} to="/">
-      Share
-      <span className={styles.text}>IT</span>
+      Mern
+      <span className={styles.text}>APP</span>
     </Link>
   );
 };
