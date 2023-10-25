@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import axios from 'axios';
 import { Dialog } from './Dialog';
 import { Input } from './Input';
 import { Button } from './Button';
-import { useAuth } from '@/hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useLogInMutation } from '../app/service/auth';
 
 export const Login: React.FC = () => {
-  const { setAuth } = useAuth();
+  const [test, {data}]= useLogInMutation()
   const navigate = useNavigate();
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -17,12 +16,19 @@ export const Login: React.FC = () => {
     },
   });
 
-  const onSubmit = async (data: any): Promise<any> => {
-    // const token = await axios.post('http://localhost:5000/auth/logIn', data);
-    // console.log({ token });
+  // console.log({data});
+  
 
-    setAuth?.({ username: data?.username });
-    navigate('/');
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     navigate('/');
+  //   }
+  // }, [isSuccess, navigate]);
+
+  const onSubmit = async (data: any): Promise<any> => {
+    console.log({data});
+    
+    // await test(data);
   };
 
   return (
