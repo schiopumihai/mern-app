@@ -1,6 +1,5 @@
 import type { BaseQueryFn } from '@reduxjs/toolkit/query';
 import type { AxiosRequestConfig, AxiosError } from 'axios';
-// import { setUser } from '@/features/user/userSlice';
 import { adapter } from '../adapter';
 
 export const axiosBaseQuery = (
