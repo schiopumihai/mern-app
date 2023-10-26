@@ -22,10 +22,10 @@ export const reAuthBaseQuery =
     if (result.error && result.error.status === 401) {
       const refreshResult = await adapter.get('/refreshToken');
 
-      if (refreshResult.data) {
+      if (refreshResult?.data) {
         api.dispatch(setAccessToken(refreshResult.data.accessToken));
         // @ts-expect-error fix later
-        result = await await adapter[method](base + url, data, config);
+        result = await adapter[method](base + url, data, config);
       } else {
         api.dispatch(clearUser());
       }
