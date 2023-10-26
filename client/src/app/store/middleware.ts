@@ -1,3 +1,3 @@
-// import { authService } from '../service/auth';
+import { authService } from '../service/auth';
 
-// export const middleware = [authService.middleware];
+export const middleware = [authService.middleware];
