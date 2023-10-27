@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Dialog } from './Dialog';
 import { Input } from './Input';
 import { Button } from './Button';
-import { useLogInMutation } from '../app/service/auth';
+import { useLogInMutation } from '../app/service/authService';
 import { setUser } from '@/features/user/userSlice';
 
 export const Login: React.FC = () => {

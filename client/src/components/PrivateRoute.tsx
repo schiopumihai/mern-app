@@ -7,11 +7,11 @@ export const PrivateRoute: React.FC = () => {
   const navigate = useNavigate();
   const accessToken = useSelector(selectToken);
 
-  useEffect(() => {
-    if (!accessToken) {
-      navigate('/signIn', { replace: true });
-    }
-  }, [accessToken, navigate]);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     navigate('/signIn', { replace: true });
+  //   }
+  // }, [accessToken, navigate]);
 
   return <Outlet />;
 };

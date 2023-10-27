@@ -4,6 +4,8 @@ const Users = require('../models/users');
 const refreshTokenController = async (req, res) => {
   const refreshToken = req.cookies?.refreshToken;
 
+  console.log({cookies: req.cookies});
+
   if (!refreshToken) {
     return res.sendStatus(401);
   }

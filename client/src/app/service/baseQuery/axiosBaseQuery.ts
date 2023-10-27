@@ -3,7 +3,7 @@ import type { AxiosRequestConfig, AxiosError } from 'axios';
 import { adapter } from '../adapter';
 
 export const axiosBaseQuery = (
-  base: string,
+  baseUrl: string,
 ): BaseQueryFn<
   {
     url: string;
@@ -17,7 +17,7 @@ export const axiosBaseQuery = (
   return async ({ url, method, data, config }) => {
     try {
       // @ts-expect-error fix later
-      const result = await adapter?.[method](base + url, data, config);
+      const result = await adapter[method](baseUrl + url, data, config);
 
       return { data: result.data };
     } catch (axiosError) {

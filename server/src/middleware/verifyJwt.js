@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const verifyJwt = (req, res, next) => {
   const authorization = req.headers.authorization;
 
+
   if (!authorization) {
     return res.sendStatus(401);
   }

@@ -9,3 +9,5 @@ export const store = configureStore({
   },
   devTools: true,
 });
+
+export const getAccessToken = ():string => store?.getState()?.user.accessToken;
