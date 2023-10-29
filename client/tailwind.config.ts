@@ -6,6 +6,7 @@ export default {
       colors: {
         MGray: '#909090',
         primary: '#00ACFF',
+        textSecondary: '#00000075'
       },
       fontFamily: {
         pacifico: ['"Pacifico"', 'cursive'],
