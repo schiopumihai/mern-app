@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Dialog } from './Dialog';
-import { Input } from './Input';
-import { Button } from './Button';
-import { useLogInMutation } from '../app/service/authService';
+import { Dialog } from '../../components/Dialog';
+import { Input } from '../../components/Input';
+import { Button } from '../../components/Button';
+import { useLogInMutation } from '../../app/service/authService';
 import { setUser } from '@/features/user/userSlice';
 
 export const Login: React.FC = () => {
@@ -20,15 +20,13 @@ export const Login: React.FC = () => {
   });
 
   useEffect(() => {
-    if (isSuccess && data?.accessToken) {
-      dispatch(setUser({ accessToken: data?.accessToken }));
+    if (isSuccess) {
+      dispatch(setUser(data));
       navigate('/');
     }
-  }, [data?.accessToken, dispatch, isSuccess, navigate]);
+  }, [data, dispatch, isSuccess, navigate]);
 
   const onSubmit = async (data: any): Promise<any> => {
-    console.log({ data });
-
     await logIn(data);
   };
 

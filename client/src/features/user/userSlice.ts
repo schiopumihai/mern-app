@@ -11,13 +11,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, { payload }) => (state = { ...state, ...payload }),
-    setAccessToken: (state, { payload }) => {
-      state.accessToken = payload;
-    },
     clearUser: (state) => {
       state = { ...initialState };
     },
   },
 });
 
-export const { setUser, setAccessToken, clearUser } = userSlice.actions;
+export const { setUser, clearUser } = userSlice.actions;
