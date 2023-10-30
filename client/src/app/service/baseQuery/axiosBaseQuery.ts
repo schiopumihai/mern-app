@@ -29,7 +29,7 @@ export const axiosBaseQuery = (
       const error = axiosError as AxiosError;
       const prevRequest: InternalAxiosRequestConfig | undefined = error.config;
 
-      if (error?.response?.status === 401) {
+      if (error?.response?.status === 401 && localStorage.getItem('accessToken')) {
         try {
           const response = await adapter.get('/auth/refreshToken');
           const { accessToken } = response.data;

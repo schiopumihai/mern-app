@@ -10,8 +10,8 @@ const styles = {
     'w-[278px]',
     'overflow-hidden',
   ),
-  backGround: classNames('bg-cover', 'h-[86px]', 'bg-center'),
-  userContainer: classNames('flex', 'px-[16px]', 'pb-[12px]', 'gap-[8px]'),
+  backGround: classNames('bg-cover', 'h-[100px]', 'bg-center'),
+  userContainer: classNames('flex', 'px-[16px]', 'pb-[24px]', 'gap-[8px]'),
   userPhoto: classNames(
     'rounded-[50%]',
     'h-[54px]',

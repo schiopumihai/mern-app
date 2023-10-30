@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Layout } from './components/Layout';
 import classNames from 'classnames';
-import UserCard from './features/user/UserCard';
+import { Main } from './features/main/Main';
 
 const styles = {
   container: classNames('flex', 'flex-col', 'h-screen'),
@@ -14,16 +14,7 @@ const styles = {
 const Message: React.FC = () => <div>Message</div>;
 const Friends: React.FC = () => <div>Friends</div>;
 const Notifications: React.FC = () => <div>Notifications</div>;
-// const Main: React.FC = () => {
-//   const { data, isLoading } = useGetAllUsersQuery('');
 
-//   return (
-//     <div>
-//       {isLoading ||
-//         data?.map((item: any) => <div key={item?._id}>{item.username}</div>)}
-//     </div>
-//   );
-// };
 
 const App: React.FC = () => {
   return (
@@ -34,7 +25,7 @@ const App: React.FC = () => {
           <Route path="/signIn" element={<Login />} />
           <Route path="/register" element={<Login />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<UserCard />} />
+            <Route path="/" element={<Main />} />
             <Route path="friends" element={<Friends />} />
             <Route path="notifications" element={<Notifications />} />
             <Route path="messages" element={<Message />} />
