@@ -8,16 +8,16 @@ import {
   BellIcon,
   ChatBubbleOvalLeftEllipsisIcon,
 } from '@heroicons/react/24/outline';
+import { SearchInput } from './components/SearchInput';
+import { ThreeColumnLayout } from '../ThreeColumnLayout';
 
 const styles = {
-  container: classNames(
+  container: classNames('py-[18px]', 'bg-white'),
+  navContainer: classNames(
     'flex',
-    'py-[18px]',
-    'px-[140px]',
-    'bg-white',
     'items-center',
-    'justify-between',
     'gap-[24px]',
+    'justify-center',
   ),
   links: classNames(
     'flex flex-1',
@@ -30,41 +30,43 @@ const styles = {
 
 const NAV_LINKS = [
   {
-    link: '/',
+    link: '/feed',
     Icon: HomeIcon,
   },
   {
-    link: 'friends',
+    link: '/friends',
     Icon: UserGroupIcon,
   },
   {
-    link: 'notifications',
+    link: '/notifications',
     Icon: BellIcon,
   },
   {
-    link: 'messages',
+    link: '/messages',
     Icon: ChatBubbleOvalLeftEllipsisIcon,
   },
 ];
 
 export const NavBar = (): React.ReactNode => {
+  const links = NAV_LINKS.map(({ link, Icon }, index) => (
+    <NavLink
+      to={link}
+      key={`${link}-${index}`}
+      className={({ isActive }) => classNames({ 'text-primary': isActive })}
+    >
+      <Icon height={24} />
+    </NavLink>
+  ));
+
   return (
     <div className={styles.container}>
-      <Logo />
-      <div className={styles.links}>
-        {NAV_LINKS.map(({ link, Icon }, index) => (
-          <NavLink
-            to={link}
-            key={`${link}-${index}`}
-            className={({ isActive }) =>
-              classNames({ 'text-primary': isActive })
-            }
-          >
-            <Icon className="h-[24px]" />
-          </NavLink>
-        ))}
-      </div>
-      <div></div>
+      <ThreeColumnLayout
+        leftSideBar={<Logo />}
+        mainContent={links}
+        containerStyles='items-center'
+        mainContentStyles={styles.navContainer}
+        rightSideBar={<SearchInput />}
+      />
     </div>
   );
 };

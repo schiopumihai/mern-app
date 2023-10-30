@@ -9,7 +9,7 @@ const styles = {
 
 export const Logo = (): React.ReactNode => {
   return (
-    <NavLink className={styles.log} to="/">
+    <NavLink className={styles.log} to="/feed">
       Mern
       <span className={styles.text}>APP</span>
     </NavLink>

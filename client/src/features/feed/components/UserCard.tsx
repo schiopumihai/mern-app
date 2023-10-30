@@ -1,13 +1,12 @@
 import React from 'react';
-import BackGround from '../../assets/bg.jpg';
-import UserPhoto from '../../assets/user.jpg';
+import BackGround from '@/assets/bg.jpg';
+import UserPhoto from '@/assets/user.jpg';
 import classNames from 'classnames';
 
 const styles = {
   container: classNames(
     'rounded-[18px]',
     'bg-white',
-    'w-[278px]',
     'overflow-hidden',
   ),
   backGround: classNames('bg-cover', 'h-[100px]', 'bg-center'),
