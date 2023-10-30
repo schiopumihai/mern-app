@@ -5,13 +5,10 @@ import CreatePost from './components/CreatePost';
 import { FriendsRecommendation } from './components/FriendsRecommendation';
 
 export const Feed: React.FC = () => {
-  const leftSideBar = <UserCard />;
-  const mainContent = <CreatePost />;
-
   return (
     <ThreeColumnLayout
-      leftSideBar={leftSideBar}
-      mainContent={mainContent}
+      leftSideBar={<UserCard />}
+      mainContent={<CreatePost />}
       rightSideBar={<FriendsRecommendation />}
     />
   );
