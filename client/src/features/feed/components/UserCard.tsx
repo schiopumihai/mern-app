@@ -4,11 +4,7 @@ import UserPhoto from '@/assets/user.jpg';
 import classNames from 'classnames';
 
 const styles = {
-  container: classNames(
-    'rounded-[18px]',
-    'bg-white',
-    'overflow-hidden',
-  ),
+  container: classNames('card'),
   backGround: classNames('bg-cover', 'h-[100px]', 'bg-center'),
   userContainer: classNames('flex', 'px-[16px]', 'pb-[24px]', 'gap-[8px]'),
   userPhoto: classNames(

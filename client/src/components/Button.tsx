@@ -3,11 +3,11 @@ import classNames from 'classnames';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  buttonType?: string;
+  buttonType?: 'contain' | 'outline';
 }
 
 const styles = {
-  container: classNames(
+  contain: classNames(
     'bg-primary',
     'rounded-[8px]',
     'text-white',
@@ -27,10 +27,10 @@ const styles = {
 export const Button: React.FC<ButtonProps> = ({
   children,
   className,
-  buttonType = 'container',
+  buttonType = 'contain',
   ...buttonProps
 }) => {
-  const buttonStyles = classNames([styles?.[buttonType], className]);
+  const buttonStyles = classNames([styles[buttonType], className]);
 
   return (
     <button {...buttonProps} className={buttonStyles}>

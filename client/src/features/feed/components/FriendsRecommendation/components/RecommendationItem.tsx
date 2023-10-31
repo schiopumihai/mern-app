@@ -14,13 +14,12 @@ export const RecommendationItem: React.FC<RecommendationItemProps> = ({
   description,
 }) => (
   <div className="flex justify-between items-center">
-    <div className="flex items-center gap-[8px]">
-      <UserImage imageUrl={imageUrl} />
-      <div>
-        <div className="text-[14px] font-semibold">{fullName}</div>
-        <div className="text-[14px] text-textSecondary">{description}</div>
-      </div>
-    </div>
+    <UserImage
+      imageUrl={imageUrl}
+      fullName={fullName}
+      description={description}
+    />
+
     <Button buttonType="outline" className="py-[8px] px-[8px] text-[14px]">
       Connect
     </Button>

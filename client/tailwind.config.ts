@@ -10,6 +10,7 @@ export default {
         primaryMedium: '#A1E1FF7D',
         primaryLight: '#D2F0FF69',
         textSecondary: '#00000075',
+        textGrey: "#C4C4C4",
         lightGrey: '#F6F6F6',
       },
       fontFamily: {
