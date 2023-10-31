@@ -3,7 +3,7 @@ import { Login } from './features/auth/Login';
 import { NavBar } from './components/NavBar';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 import { Feed } from './features/feed/Feed';
 
 const styles = {

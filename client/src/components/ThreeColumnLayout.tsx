@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 import React, { type ReactNode } from 'react';
 
 interface ThreeColumnLayoutProps {

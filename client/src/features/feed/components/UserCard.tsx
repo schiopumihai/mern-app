@@ -1,7 +1,7 @@
 import React from 'react';
 import BackGround from '@/assets/bg.jpg';
 import UserPhoto from '@/assets/user.jpg';
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 
 const styles = {
   container: classNames('card'),

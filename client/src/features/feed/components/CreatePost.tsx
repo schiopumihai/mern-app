@@ -7,7 +7,7 @@ import {
   PaperAirplaneIcon,
 } from '@heroicons/react/24/outline';
 import UserPhoto from '@/assets/user.jpg';
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 
 const styles = {
   container: classNames('card'),

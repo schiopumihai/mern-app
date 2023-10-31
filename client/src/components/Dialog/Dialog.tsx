@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 import { Title } from './components/Title';
 import { Content } from './components/Content';
 import { Actions } from './components/Actions';

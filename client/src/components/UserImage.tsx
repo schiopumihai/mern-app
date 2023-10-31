@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 
 interface UserImageProps {
   imageUrl: string;
@@ -16,6 +16,8 @@ const styles = {
     'bg-cover',
     'bg-top',
   ),
+  fullName: classNames('text-[14px]', 'font-semibold'),
+  description: classNames('text-[14px]', 'text-textSecondary'),
 };
 
 const UserImage: React.FC<UserImageProps> = ({
@@ -30,15 +32,11 @@ const UserImage: React.FC<UserImageProps> = ({
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
-        className={classNames([styles.userImage, imageStyles])}
+        className={classNames(styles.userImage, imageStyles)}
       />
       <div>
-        {fullName && (
-          <div className="text-[14px] font-semibold">{fullName}</div>
-        )}
-        {description && (
-          <div className="text-[14px] text-textSecondary">{description}</div>
-        )}
+        {fullName && <div className={styles.fullName}>{fullName}</div>}
+        {description && <div className={styles.description}>{description}</div>}
       </div>
     </div>
   );

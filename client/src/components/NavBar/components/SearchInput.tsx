@@ -1,6 +1,6 @@
 import React from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import classNames from 'classnames';
+import classNames from '@/utils/classNames';
 
 const styles = {
   container: classNames(
