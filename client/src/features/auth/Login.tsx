@@ -7,6 +7,12 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { useLogInMutation } from '../../app/service/authService';
 import { setUser } from '@/features/user/userSlice';
+import classNames from '@/utils/classNames';
+
+const styles = {
+  container: classNames('h-full'),
+  button: classNames('w-full'),
+};
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -22,7 +28,7 @@ export const Login: React.FC = () => {
   useEffect(() => {
     if (isSuccess) {
       dispatch(setUser(data));
-      navigate('/');
+      navigate('/feed');
     }
   }, [data, dispatch, isSuccess, navigate]);
 
@@ -31,7 +37,7 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="h-[100%]">
+    <div className={styles.container}>
       <Dialog>
         <Dialog.Title>LogIn</Dialog.Title>
         <Dialog.Content>
@@ -50,7 +56,7 @@ export const Login: React.FC = () => {
           />
         </Dialog.Content>
         <Dialog.Actions>
-          <Button className="w-[100%]" onClick={handleSubmit(onSubmit)}>
+          <Button className={styles.button} onClick={handleSubmit(onSubmit)}>
             {isLoading ? 'Loading...' : 'Continue'}
           </Button>
         </Dialog.Actions>

@@ -8,6 +8,7 @@ import { Feed } from './features/feed/Feed';
 
 const styles = {
   container: classNames('flex', 'flex-col', 'h-screen'),
+  content: classNames('pt-[18px]', 'h-full'),
 };
 
 const Message: React.FC = () => <div>Message</div>;
@@ -17,8 +18,8 @@ const Notifications: React.FC = () => <div>Notifications</div>;
 const App: React.FC = () => {
   return (
     <div className={styles.container}>
-      <NavBar />
-      <div className="pt-[18px]">
+      {localStorage.getItem('accessToken') && <NavBar />}
+      <div className={styles.content}>
         <Routes>
           <Route path="/signIn" element={<Login />} />
           <Route path="/register" element={<Login />} />
