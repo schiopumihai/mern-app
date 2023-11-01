@@ -5,34 +5,30 @@ import {
   ChatBubbleOvalLeftIcon,
   BookmarkIcon,
   PaperAirplaneIcon,
-  MicrophoneIcon,
-  PhotoIcon,
 } from '@heroicons/react/24/outline';
-import UserImage from '@/components/UserImage';
+import Avatar from '@/components/Avatar';
 import UserPhoto from '@/assets/user.jpg';
 import Poster from '@/assets/bg.jpg';
+import { WriteComment } from './components/WriteComment';
+import classNames from '@/utils/classNames';
 
-const WriteComment: React.FC = () => {
-  return (
-    <div className="rounded-full bg-lightGrey p-[8px] flex items-center justify-between">
-      <UserImage imageUrl={UserPhoto} imageStyles="h-[26px] w-[26px]" />
-      <input
-        placeholder="Write a comment"
-        className="bg-inherit !outline-none w-full"
-      />
-      <div className="flex items-center text-textSecondary gap-[8px] mr-[12px]">
-        <MicrophoneIcon height={18} />
-        <PhotoIcon height={18} />
-      </div>
-    </div>
-  );
+const styles = {
+  container: classNames(
+    'px-[22px]',
+    'pb-[8px]',
+    'pt-[14px]',
+    'card',
+    'flex',
+    'flex-col',
+    'gap-[15px]',
+  ),
 };
 
 export const Post: React.FC = () => {
   return (
-    <div className="px-[22px] pb-[8px] pt-[14px] card flex flex-col gap-[15px]">
+    <div className={styles.container}>
       <div className="flex items-center justify-between">
-        <UserImage
+        <Avatar
           imageUrl={UserPhoto}
           fullName="Tony Stark"
           description="Engineer"
@@ -64,3 +60,5 @@ export const Post: React.FC = () => {
     </div>
   );
 };
+
+

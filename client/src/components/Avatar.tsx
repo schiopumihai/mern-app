@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from '@/utils/classNames';
 
-interface UserImageProps {
+interface AvatarProps {
   imageUrl: string;
   imageStyles?: string;
   fullName?: string;
@@ -18,16 +18,17 @@ const styles = {
   ),
   fullName: classNames('text-[14px]', 'font-semibold'),
   description: classNames('text-[14px]', 'text-textSecondary'),
+  container: classNames('flex', 'items-center', 'gap-[8px]'),
 };
 
-const UserImage: React.FC<UserImageProps> = ({
+const Avatar: React.FC<AvatarProps> = ({
   imageUrl,
   imageStyles,
   fullName,
   description,
 }) => {
   return (
-    <div className="flex items-center gap-[8px]">
+    <div className={styles.container}>
       <div
         style={{
           backgroundImage: `url(${imageUrl})`,
@@ -42,4 +43,4 @@ const UserImage: React.FC<UserImageProps> = ({
   );
 };
 
-export default UserImage;
+export default Avatar;

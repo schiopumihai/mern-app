@@ -1,5 +1,5 @@
 import React from 'react';
-import UserImage from '@/components/UserImage';
+import Avatar from '@/components/Avatar';
 import { Button } from '@/components/Button';
 
 interface RecommendationItemProps {
@@ -14,7 +14,7 @@ export const RecommendationItem: React.FC<RecommendationItemProps> = ({
   description,
 }) => (
   <div className="flex justify-between items-center">
-    <UserImage
+    <Avatar
       imageUrl={imageUrl}
       fullName={fullName}
       description={description}
