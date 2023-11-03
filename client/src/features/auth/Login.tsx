@@ -10,14 +10,13 @@ import { setUser } from '@/features/user/userSlice';
 import classNames from '@/utils/classNames';
 
 const styles = {
-  container: classNames('h-full'),
   button: classNames('w-full'),
 };
 
 export const Login: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [logIn, { data, isSuccess, isLoading }] = useLogInMutation();
+  const [logIn, { data, isSuccess, isLoading, isError }] = useLogInMutation();
   const { handleSubmit, control } = useForm({
     defaultValues: {
       username: '',
@@ -25,8 +24,9 @@ export const Login: React.FC = () => {
     },
   });
 
+  console.log({ isSuccess, data, isError });
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && data?.accessToken) {
       dispatch(setUser(data));
       navigate('/feed');
     }
@@ -37,30 +37,28 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <Dialog>
-        <Dialog.Title>LogIn</Dialog.Title>
-        <Dialog.Content>
-          <Controller
-            control={control}
-            name="username"
-            render={({ field }) => <Input label="Email" {...field} />}
-          />
+    <Dialog>
+      <Dialog.Title>LogIn</Dialog.Title>
+      <Dialog.Content>
+        <Controller
+          control={control}
+          name="username"
+          render={({ field }) => <Input label="Email" {...field} />}
+        />
 
-          <Controller
-            control={control}
-            name="password"
-            render={({ field }) => (
-              <Input label="Password" type="password" {...field} />
-            )}
-          />
-        </Dialog.Content>
-        <Dialog.Actions>
-          <Button className={styles.button} onClick={handleSubmit(onSubmit)}>
-            {isLoading ? 'Loading...' : 'Continue'}
-          </Button>
-        </Dialog.Actions>
-      </Dialog>
-    </div>
+        <Controller
+          control={control}
+          name="password"
+          render={({ field }) => (
+            <Input label="Password" type="password" {...field} />
+          )}
+        />
+      </Dialog.Content>
+      <Dialog.Actions>
+        <Button className={styles.button} onClick={handleSubmit(onSubmit)}>
+          {isLoading ? 'Loading...' : 'Continue'}
+        </Button>
+      </Dialog.Actions>
+    </Dialog>
   );
 };

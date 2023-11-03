@@ -8,12 +8,19 @@
 @layer base {
   html {
     font-family: Figtree, system-ui, sans-serif;
-    @apply bg-lightGrey;
+    @apply bg-lightGrey h-full;
+  }
+  body {
+    @apply h-full;
+  }
+
+  #root {
+    @apply h-full;
   }
 }
 
 @layer components {
   .card{
-    @apply bg-white rounded-[18px] overflow-hidden shadow-md
+    @apply bg-white rounded-[18px] overflow-hidden shadow-md;
   }
 }

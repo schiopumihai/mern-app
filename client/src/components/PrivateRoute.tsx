@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { NavBar } from './NavBar';
+import classNames from '@/utils/classNames';
+
+const styles = {
+  content: classNames('pt-[18px]'),
+};
 
 export const PrivateRoute: React.FC = () => {
   const navigate = useNavigate();
@@ -15,5 +21,12 @@ export const PrivateRoute: React.FC = () => {
     }
   }, [accessToken, location, navigate]);
 
-  return <Outlet />;
+  return (
+    <div>
+      {localStorage.getItem('accessToken') && <NavBar />}
+      <div className={styles.content}>
+        <Outlet />
+      </div>
+    </div>
+  );
 };
